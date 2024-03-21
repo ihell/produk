@@ -27,13 +27,13 @@
     <tbody>
     </tbody>
   </table>
-  
+
   <img src="loader.gif" style="width: 15em; display: block" id="loader">
-  
+
   <a href="form-produk.html">tambah produk</a>
 
   <script type="module">
-    import { ambilDaftarProduk, formatAngka } from './main.js';
+    import { ambilDaftarProduk, formatAngka, hapusProduk } from './main.js';
 
     $(document).ready(async function() {
       let elemenDaftar = $("#daftar-produk > tbody");
@@ -46,14 +46,24 @@
           '<th>' + nomor + '</th>' +
           '<td>' + data.nama + '</td>' +
           '<td>' + formatAngka(data.harga) + '</td>' +
-          '<td>' + data.stok + '</td>' +
+          '<td>' + data.stok + '</td>' + '<td>' + '<button class="btn btn-danger tombol-hapus" data="' + data.id + '">Hapus</button>' +
+          '<img src="loader.gif" style="width: 1em; display: none" id="' + data.id + '">' +
+          '</td>' +
           '</tr>'
         );
         nomor = nomor + 1;
       });
-      
+
       $('#loader').hide();
       
+        $('.tombol-hapus').click(async function() {
+        $(this).attr('disabled', 'disabled');
+        $('#' + $(this).attr('data')).show();
+        await hapusProduk($(this).attr('data'));
+        location.reload();
+      });
+
+
     });
   </script>
 </body>

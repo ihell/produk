@@ -29,6 +29,7 @@
             <input type="text" class="form-control" id="input-stok">
           </div>
        <button type="submit" class="btn btn-primary" id="tombol-tambah">Simpan</button>
+     
      </form>
    
    <a href="index.html">Daftar Produk Ashelole</a>
@@ -40,6 +41,7 @@
      let elemenNamaProduk = document.getElementById('input-nama');
      let elemenHarga = document.getElementById('input-harga');
      let elemenStok = document.getElementById('input-stok');
+     let loader = document.getElementById('loader');
      
      tombolTambah.addEventListener('click', async function (e) {
        e.preventDefault();
